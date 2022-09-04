@@ -1,0 +1,56 @@
+{
+  "Loading": {
+    "description": "Auto imported from components/loading.vue"
+  },
+  "SideBarList": {
+    "description": "Auto imported from components/SideBarList.vue"
+  },
+  "SideBarLogo": {
+    "description": "Auto imported from components/SideBarLogo.vue"
+  },
+  "ProfileTabsFive": {
+    "description": "Auto imported from components/ProfileTabs/Five.vue"
+  },
+  "ProfileTabsFour": {
+    "description": "Auto imported from components/ProfileTabs/Four.vue"
+  },
+  "ProfileTabsOne": {
+    "description": "Auto imported from components/ProfileTabs/One.vue"
+  },
+  "ProfileTabsSaven": {
+    "description": "Auto imported from components/ProfileTabs/Saven.vue"
+  },
+  "ProfileTabsSix": {
+    "description": "Auto imported from components/ProfileTabs/Six.vue"
+  },
+  "ProfileTabsThree": {
+    "description": "Auto imported from components/ProfileTabs/Three.vue"
+  },
+  "ProfileTabsTwo": {
+    "description": "Auto imported from components/ProfileTabs/Two.vue"
+  },
+  "ReportsOrders": {
+    "description": "Auto imported from components/Reports/Orders.vue"
+  },
+  "ReportsStudents": {
+    "description": "Auto imported from components/Reports/Students.vue"
+  },
+  "StepperAddressStudentInfo": {
+    "description": "Auto imported from components/Stepper/AddressStudentInfo.vue"
+  },
+  "StepperBasicStudentInfo": {
+    "description": "Auto imported from components/Stepper/BasicStudentInfo.vue"
+  },
+  "StepperResponsibleStudentInfo": {
+    "description": "Auto imported from components/Stepper/ResponsibleStudentInfo.vue"
+  },
+  "StepperSchollStudentInfo": {
+    "description": "Auto imported from components/Stepper/SchollStudentInfo.vue"
+  },
+  "StepperUploadAttachments": {
+    "description": "Auto imported from components/Stepper/UploadAttachments.vue"
+  },
+  "ProfileTabsDialogsCreate": {
+    "description": "Auto imported from components/ProfileTabs/Dialogs/Create.vue"
+  }
+}

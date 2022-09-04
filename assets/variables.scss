@@ -1,0 +1,68 @@
+@import "https://fonts.googleapis.com/css2?family=Almarai&display=swap";
+@import "~vuetify/src/styles/styles.sass";
+$color-pack: false;
+
+$body-font-family: "Almarai", sans-serif;
+$border-radius-root: 6px;
+$font-size-root: 14px;
+$data-table-regular-row-font-size: 15px;
+
+$primary: #f1f3f8;
+$secondary: #f1f3f8;
+$info: #20a4f3;
+
+$warning: #ff9b42;
+$error: #ff3366;
+$success: #2ec4b6;
+$accent: #f6f7f8;
+
+$shadow-1: 0 3px 10px 0 rgba(black, 0.4);
+$shadow-navbar: 0 10px 25px 0 rgba(black, 0.2);
+$material-dark: (
+  cards: $secondary,
+);
+$material-light: (
+  cards: $secondary,
+);
+
+.v-application {
+  color: $secondary !important;
+  background: $primary !important;
+}
+
+.shadow-1 {
+  box-shadow: $shadow-1 !important;
+}
+
+.shadow-navbar {
+  box-shadow: $shadow-navbar !important;
+}
+
+.rounded-1 {
+  border-radius: 1em !important;
+}
+
+.theme--dark.v-data-table
+  > .v-data-table__wrapper
+  > table
+  > tbody
+  > tr:hover:not(.v-data-table__expanded__content):not(.v-data-table__empty-wrapper) {
+  background: $primary;
+}
+
+.theme--dark.v-picker__body {
+  background: $secondary !important;
+}
+
+* {
+  font-weight: bolder;
+  color: initial;
+}
+
+.v-data-table__selected {
+  background: #d4fff5 !important
+}
+
+.theme--light.v-pagination .v-pagination__item--active {
+  color: $info !important;
+}
