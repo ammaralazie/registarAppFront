@@ -22,9 +22,7 @@ export default {
     'line-awesome/dist/line-awesome/css/line-awesome.css'
   ],
 
-  plugins: [
-    '~/plugins/permisionRole.js'
-  ],
+  plugins: [],
 
   router: {
     middleware: ['auth']
@@ -71,7 +69,7 @@ export default {
 
   axios: {
     // local dijlah server
-    //baseURL: 'http://10.0.3.55:3100/api/',
+    baseURL: 'http://10.0.3.55:3100/api/',
 
     // online dijlah server
     //baseURL: 'http://109.224.62.102:3100/api/',
@@ -83,7 +81,7 @@ export default {
     // baseURL: 'http://161.22.43.108:3600/api/',
 
     //my localhost 
-    baseURL: 'http://localhost:3100/api/',
+   // baseURL: 'http://localhost:3100/api/',
   },
 
   auth: {

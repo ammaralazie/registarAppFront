@@ -77,7 +77,6 @@
 </template>
 
 <script>
-import * as cookie from "vue-cookies"
 export default {
   data() {
     return {
@@ -109,23 +108,10 @@ export default {
     )
 
     this.getSections()
-    this.setRoleIdUserId()
   },
 
   methods: {
-    setRoleIdUserId() {
-      if (!this.$axios.defaults.headers.common.roleid) {
-        delete this.$axios.defaults.headers.common.roleid
-        delete this.$axios.defaults.headers.common.iduser
-        if (cookie.get("auth.user")) {
-          this.$axios.defaults.headers.common.roleid = cookie.get("auth.user").roleId
-          this.$axios.defaults.headers.common.iduser = cookie.get("auth.user").idUser
-        } else {
-          this.$router.push("/login")
-        }/* end of if */
-        console.log("you dont have any role id in headers", this.$axios.defaults.headers.common)
-      }/* end of if */
-    },
+
     getSections() {
       const sectionId = JSON.parse(localStorage.getItem('auth.user')).sectionId
       this.$axios.get(`section/${sectionId}`).then((result) => {

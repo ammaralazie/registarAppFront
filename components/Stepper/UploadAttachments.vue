@@ -59,14 +59,13 @@ export default {
         imageTypeId: this.imageType,
         studentId: this.studentId,
       }
-
       const file = new FormData()
       file.append('attachment', this.attachment)
 
       /* 'http://161.22.43.108/upload' */
       /* 'http://localhost:3100/upload' */
 
-      this.$axios.post('http://localhost:3100/upload', file).then((path) => {
+      this.$axios.post('/upload', file).then((path) => {
         data.imagePath = path.data.imagePath
         this.$axios
           .post('addStudentImage', data)

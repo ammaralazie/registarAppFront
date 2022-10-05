@@ -283,6 +283,7 @@ export default {
         this.selectCertificatesStatus = status.data
       }/* end of if */
     })
+   this.checkAdminUser()
   },
 
   methods: {
@@ -360,6 +361,13 @@ export default {
         }
       }
     },
+    checkAdminUser(){
+      if(this.$auth){
+       if(this.$auth.user.roleId===3){
+        this.editable=true
+       }/* end of if */
+      }/* end of if */
+    },/* /checkAdminUser */
   },
 }
 </script>

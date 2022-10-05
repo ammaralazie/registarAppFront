@@ -824,7 +824,6 @@ export default {
       if (this.$refs.studentReportForm.validate()) {
         const data = Object.fromEntries(new FormData(event.target))
         /* const selectedHeader = this.headers.filter((h) => h.selected) */
-
         const filters = {}
 
         if (data.sectionId) {

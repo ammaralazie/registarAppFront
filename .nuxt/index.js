@@ -17,7 +17,6 @@ import nuxt_plugin_plugin_6fee7f48 from 'nuxt_plugin_plugin_6fee7f48' // Source:
 import nuxt_plugin_plugin_855a7ca8 from 'nuxt_plugin_plugin_855a7ca8' // Source: .\\vuetify\\plugin.js (mode: 'all')
 import nuxt_plugin_toast_04e4ec1a from 'nuxt_plugin_toast_04e4ec1a' // Source: .\\toast.js (mode: 'client')
 import nuxt_plugin_axios_38b49f6b from 'nuxt_plugin_axios_38b49f6b' // Source: .\\axios.js (mode: 'all')
-import nuxt_plugin_permisionRole_4c2740ae from 'nuxt_plugin_permisionRole_4c2740ae' // Source: ..\\plugins\\permisionRole.js (mode: 'all')
 import nuxt_plugin_auth_aa901f36 from 'nuxt_plugin_auth_aa901f36' // Source: .\\auth.js (mode: 'all')
 
 // Component: <ClientOnly>
@@ -226,10 +225,6 @@ async function createApp(ssrContext, config = {}) {
 
   if (typeof nuxt_plugin_axios_38b49f6b === 'function') {
     await nuxt_plugin_axios_38b49f6b(app.context, inject)
-  }
-
-  if (typeof nuxt_plugin_permisionRole_4c2740ae === 'function') {
-    await nuxt_plugin_permisionRole_4c2740ae(app.context, inject)
   }
 
   if (typeof nuxt_plugin_auth_aa901f36 === 'function') {

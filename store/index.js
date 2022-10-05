@@ -738,6 +738,11 @@ export const state = () => ({
             "idYearStudy": 43,
             "year": "1980-1981",
             "currentYear": false
+        },
+        {
+            "idYearStudy": 44,
+            "year": "2021-2022",
+            "currentYear": false
         }
     ],
 

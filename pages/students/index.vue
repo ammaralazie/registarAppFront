@@ -655,7 +655,7 @@ export default {
       } else {
         filterd = this.orderSelectTitle.filter((o) => {
           return (
-            o.idOrderTitle !== 52 &&
+            /* o.idOrderTitle !== 52 && */
             o.idOrderTitle !== 53 &&
             o.idOrderTitle !== 54 &&
             o.idOrderTitle !== 21 &&
@@ -687,7 +687,6 @@ export default {
     this.orderSelectYear = this.$store.state.yearStudies
     const currentYear = this.$store.state.yearStudies.filter(
       (year) => {
-        console.log("year : ",year)
         return year.currentYear === true
       }
     )
@@ -1026,19 +1025,19 @@ export default {
             }
 
             this.studentsCount = studentData.length
-            console.log(students.data)
-            if(studentData.length>0){
-              studentData.forEach(item=>{
-                item.studentLevel=item.studentLevel.filter(item=>{
-                  console.log("check : ",item.level,"data.studentLevel : ",data.studentLevel)
-                   if(item.level===data.studentLevel*1){
-                    return item
-                   } 
+            // console.log(students.data)
+            // if(studentData.length>0){
+            //   studentData.forEach(item=>{
+            //     item.studentLevel=item.studentLevel.filter(item=>{
+            //       console.log("check : ",item.level,"data.studentLevel : ",data.studentLevel)
+            //        if(item.level===data.studentLevel*1){
+            //         return item
+            //        } 
                    
-                   return null
-                })
-              })/* end of forEach */
-            }/* end of for looop */
+            //        return null
+            //     })
+            //   })/* end of forEach */
+            // }/* end of for looop */
             this.students = studentData.reverse().map((student) => {
               return {
                 ...student,

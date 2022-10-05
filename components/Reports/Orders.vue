@@ -1,11 +1,6 @@
 <template>
   <div>
-    <v-dialog
-      v-model="reportsDialog"
-      persistent
-      transition="slide-y-transition"
-      max-width="750px"
-    >
+    <v-dialog v-model="reportsDialog" persistent transition="slide-y-transition" max-width="750px">
       <v-card color="secondary" class="shadow-1 rounded-1">
         <v-toolbar color="primary" class="shadow-1 rounded-1">
           <h4>فرز الاوامر الادارية</h4>
@@ -15,113 +10,50 @@
           </v-btn>
         </v-toolbar>
         <v-container>
-          <v-form
-            ref="reportsForm"
-            v-model="reportsForm"
-            @submit.prevent="createReports"
-          >
+          <v-form ref="reportsForm" v-model="reportsForm" @submit.prevent="createReports">
             <v-row>
               <v-col cols="12" xs="12" sm="12" md="6" lg="6" xl="6">
-                <v-autocomplete
-                  name="reportStudentId"
-                  :items="students"
-                  color="accent"
-                  item-text="studentName"
-                  item-value="idStudent"
-                  outlined
-                  label="اسم الطالب"
-                  clearable
-                ></v-autocomplete>
+                <v-autocomplete name="reportStudentId" :items="students" color="accent" item-text="studentName"
+                  item-value="idStudent" outlined label="اسم الطالب" clearable></v-autocomplete>
               </v-col>
 
               <v-col cols="12" sm="12" md="12" lg="6" xl="6">
-                <v-select
-                  :items="orderSelectLevel"
-                  item-value="value"
-                  item-text="text"
-                  color="accent"
-                  outlined
-                  item-color="accent"
-                  label="مرحلة الامر"
-                  name="orderLevel"
-                  clearable
-                ></v-select>
+                <v-select :items="orderSelectLevel" item-value="value" item-text="text" color="accent" outlined
+                  item-color="accent" label="مرحلة الامر" name="orderLevel" clearable></v-select>
               </v-col>
 
               <v-col cols="12" xs="12" sm="12" md="6" lg="6" xl="6">
-                <v-autocomplete
-                  name="reportOrderTitleId"
-                  :items="selectOrderTitle"
-                  item-text="title"
-                  item-value="idOrderTitle"
-                  item-color="accent"
-                  color="accent"
-                  outlined
-                  label="عنوان الامر"
-                  clearable
-                ></v-autocomplete>
+                <v-autocomplete name="reportOrderTitleId" :items="selectOrderTitle" item-text="title"
+                  item-value="idOrderTitle" item-color="accent" color="accent" outlined label="عنوان الامر" clearable>
+                </v-autocomplete>
               </v-col>
 
               <v-col cols="12" xs="12" sm="12" md="6" lg="6" xl="6">
-                <v-text-field
-                  name="reportOrderNumber"
-                  color="accent"
-                  outlined
-                  label="رقم الامر"
-                  clearable
-                ></v-text-field>
+                <v-text-field name="reportOrderNumber" color="accent" outlined label="رقم الامر" clearable>
+                </v-text-field>
               </v-col>
 
               <v-col cols="12" xs="12" sm="12" md="6" lg="6" xl="6">
-                <v-select
-                  v-model="reportOrderYear"
-                  name="reportOrderYear"
-                  :items="selectOrderYear"
-                  item-value="idYearStudy"
-                  item-text="year"
-                  item-color="accent"
-                  color="accent"
-                  outlined
-                  label="سنة الامر"
-                  clearable
-                ></v-select>
+                <v-select v-model="reportOrderYear" name="reportOrderYear" :items="selectOrderYear"
+                  item-value="idYearStudy" item-text="year" item-color="accent" color="accent" outlined
+                  label="سنة الامر" clearable></v-select>
               </v-col>
 
               <v-col cols="12" xs="12" sm="12" md="6" lg="6" xl="6">
-                <v-menu
-                  ref="orderDateMenuModel"
-                  v-model="orderDateMenuModel"
-                  :close-on-content-click="false"
-                  transition="scale-transition"
-                  offset-y
-                  min-width="auto"
-                >
+                <v-menu ref="orderDateMenuModel" v-model="orderDateMenuModel" :close-on-content-click="false"
+                  transition="scale-transition" offset-y min-width="auto">
                   <template #activator="{ on, attrs }">
-                    <v-text-field
-                      v-model="reportOrderDate"
-                      name="reportOrderDate"
-                      outlined
-                      color="accent"
-                      label="تاريخ الامر"
-                      v-bind="attrs"
-                      clearable
-                      v-on="on"
-                    ></v-text-field>
+                    <v-text-field v-model="reportOrderDate" name="reportOrderDate" outlined color="accent"
+                      label="تاريخ الامر" v-bind="attrs" clearable v-on="on"></v-text-field>
                   </template>
 
-                  <v-date-picker
-                    v-model="reportOrderDate"
-                    :active-picker.sync="orderDateActivePicker"
-                    :max="
-                      new Date(
-                        Date.now() - new Date().getTimezoneOffset() * 60000
-                      )
-                        .toISOString()
-                        .substr(0, 10)
-                    "
-                    min="1950-01-01"
-                    @change="saveOrderDate"
-                  ></v-date-picker>
+                  <v-date-picker v-model="reportOrderDate" :active-picker.sync="orderDateActivePicker" :max="
+                    new Date(
+                      Date.now() - new Date().getTimezoneOffset() * 60000
+                    )
+                      .toISOString()
+                      .substr(0, 10)
+                  " min="1950-01-01" @change="saveOrderDate"></v-date-picker>
                 </v-menu>
               </v-col>
             </v-row>
@@ -130,160 +62,64 @@
 
             <v-row class="mt-5 mb-5">
               <v-col cols="12" sm="12" md="12" lg="6" xl="6">
-                <v-autocomplete
-                  :items="reportSelectSections"
-                  item-value="idSection"
-                  item-text="sectionName"
-                  color="accent"
-                  outlined
-                  item-color="accent"
-                  label="القسم"
-                  name="sectionId"
-                  clearable
-                ></v-autocomplete>
+                <v-autocomplete :items="reportSelectSections" item-value="idSection" item-text="sectionName"
+                  color="accent" outlined item-color="accent" label="القسم" name="sectionId" clearable></v-autocomplete>
               </v-col>
 
               <v-col cols="12" sm="12" md="12" lg="6" xl="6">
-                <v-select
-                  :items="reportSelectRegisterYear"
-                  item-value="idYearStudy"
-                  item-text="year"
-                  color="accent"
-                  outlined
-                  item-color="accent"
-                  label="سنة القبول"
-                  name="registerYearId"
-                  clearable
-                ></v-select>
+                <v-select :items="reportSelectRegisterYear" item-value="idYearStudy" item-text="year" color="accent"
+                  outlined item-color="accent" label="سنة القبول" name="registerYearId" clearable></v-select>
               </v-col>
 
               <v-col cols="12" sm="12" md="12" lg="6" xl="6">
-                <v-select
-                  :items="reportSelectStatus"
-                  item-value="idStudentStatus"
-                  item-text="statusName"
-                  color="accent"
-                  outlined
-                  item-color="accent"
-                  label="حالة الطالب"
-                  name="studentStatusId"
-                  clearable
-                ></v-select>
+                <v-select :items="reportSelectStatus" item-value="idStudentStatus" item-text="statusName" color="accent"
+                  outlined item-color="accent" label="حالة الطالب" name="studentStatusId" clearable></v-select>
               </v-col>
 
               <v-col cols="12" xs="12" sm="12" md="6" lg="6" xl="6">
-                <v-select
-                  outlined
-                  color="accent"
-                  label="الجنس"
-                  :items="selectGender"
-                  item-text="text"
-                  item-value="value"
-                  item-color="accent"
-                  name="gender"
-                ></v-select>
+                <v-select outlined color="accent" label="الجنس" :items="selectGender" item-text="text"
+                  item-value="value" item-color="accent" name="gender"></v-select>
               </v-col>
 
               <v-col cols="12" sm="12" md="12" lg="6" xl="6">
-                <v-select
-                  :items="reportSelectStudyType"
-                  item-value="value"
-                  item-text="text"
-                  color="accent"
-                  outlined
-                  item-color="accent"
-                  label="نوع الدراسة"
-                  name="studyType"
-                  clearable
-                ></v-select>
+                <v-select :items="reportSelectStudyType" item-value="value" item-text="text" color="accent" outlined
+                  item-color="accent" label="نوع الدراسة" name="studyType" clearable></v-select>
               </v-col>
 
               <v-col cols="12" sm="12" md="12" lg="6" xl="6">
-                <v-select
-                  :items="orderSelectLevel"
-                  item-value="value"
-                  item-text="text"
-                  color="accent"
-                  outlined
-                  item-color="accent"
-                  label="مرحلة الطالب"
-                  name="studentLevel"
-                  clearable
-                ></v-select>
+                <v-select :items="orderSelectLevel" item-value="value" item-text="text" color="accent" outlined
+                  item-color="accent" label="مرحلة الطالب" name="studentLevel" clearable></v-select>
               </v-col>
 
               <v-col cols="12" sm="12" md="4" lg="4" xl="4">
-                <v-select
-                  :items="reportSelectRegisterYear"
-                  item-value="idYearStudy"
-                  item-text="year"
-                  color="accent"
-                  outlined
-                  item-color="accent"
-                  label="سنة التخرج"
-                  name="graduationDate"
-                  clearable
-                ></v-select>
+                <v-select :items="reportSelectRegisterYear" item-value="idYearStudy" item-text="year" color="accent"
+                  outlined item-color="accent" label="سنة التخرج" name="graduationDate" clearable></v-select>
               </v-col>
 
               <v-col cols="12" xs="12" sm="12" md="4" lg="4" xl="4">
-                <v-select
-                  v-model="studentCategory"
-                  :items="selectCategory"
-                  item-value="idStudyCategory"
-                  item-text="categoryName"
-                  color="accent"
-                  outlined
-                  label="الاختصاص"
-                  return-object
-                  item-color="accent"
-                  @change="categorySelected"
-                ></v-select>
+                <v-select v-model="studentCategory" :items="selectCategory" item-value="idStudyCategory"
+                  item-text="categoryName" color="accent" outlined label="الاختصاص" return-object item-color="accent"
+                  @change="categorySelected"></v-select>
               </v-col>
 
               <v-col cols="12" xs="12" sm="12" md="4" lg="4" xl="4">
-                <v-select
-                  v-model="studySubCategoryId"
-                  :items="selectSubCategory"
-                  item-value="idStudySubCategory"
-                  item-text="subCategoryName"
-                  color="accent"
-                  outlined
-                  label="الفرع"
-                  item-color="accent"
-                  :disabled="!isSelectCategory"
-                ></v-select>
+                <v-select v-model="studySubCategoryId" :items="selectSubCategory" item-value="idStudySubCategory"
+                  item-text="subCategoryName" color="accent" outlined label="الفرع" item-color="accent"
+                  :disabled="!isSelectCategory"></v-select>
               </v-col>
             </v-row>
 
             <v-divider />
             <v-row>
               <v-col cols="12">
-                <v-checkbox
-                  v-model="headers.selected"
-                  label="تحديد الكل"
-                  color="accent"
-                  @change="headers.map((h) => (h.selected = true))"
-                ></v-checkbox>
+                <v-checkbox v-model="headers.selected" label="تحديد الكل" color="accent"
+                  @change="headers.map((h) => (h.selected = true))"></v-checkbox>
               </v-col>
             </v-row>
             <v-divider />
             <v-row class="mt-5 mb-5">
-              <v-col
-                v-for="item in headers"
-                :key="item.value"
-                cols="12"
-                xs="12"
-                sm="12"
-                md="3"
-                lg="3"
-                xl="3"
-              >
-                <v-checkbox
-                  v-model="item.selected"
-                  :label="item.text"
-                  color="accent"
-                ></v-checkbox>
+              <v-col v-for="item in headers" :key="item.value" cols="12" xs="12" sm="12" md="3" lg="3" xl="3">
+                <v-checkbox v-model="item.selected" :label="item.text" color="accent"></v-checkbox>
               </v-col>
             </v-row>
 
@@ -296,61 +132,30 @@
     </v-dialog>
 
     <v-card id="tableWrapper" class="shadow-navbar rounded-1">
-      <v-data-table
-        id="orderTable"
-        :headers="selectedHeader"
-        :items="orders"
-        :search="search"
-        :item-class="row_classess"
-      >
+      <v-data-table id="orderTable" :headers="selectedHeader" :items="orders" :search="search"
+        :item-class="row_classess">
         <template #top>
           <v-toolbar color="primary" class="shadow-navbar rounded-1 mb-8">
-            <v-text-field
-              v-model="search"
-              append-icon="mdi-magnify"
-              label="بحث في الاوامر الادارية..."
-              single-line
-              hide-details
-              color="accent"
-            ></v-text-field>
+            <v-text-field v-model="search" append-icon="mdi-magnify" label="بحث في الاوامر الادارية..." single-line
+              hide-details color="accent"></v-text-field>
 
             <v-spacer></v-spacer>
 
             <v-tooltip bottom color="accent" transition="slide-y-transition">
               <template #activator="{ on, attrs }">
-                <v-btn
-                  light
-                  color="accent"
-                  depressed
-                  class="ml-3 primary--text"
-                  v-bind="attrs"
-                  icon
-                  v-on="on"
-                  @click="reportsDialog = true"
-                >
+                <v-btn light color="accent" depressed class="ml-3 primary--text" v-bind="attrs" icon v-on="on"
+                  @click="reportsDialog = true">
                   <v-icon>mdi-sort</v-icon>
                 </v-btn>
               </template>
               <span class="primary--text">انشاء تقرير</span>
             </v-tooltip>
 
-            <v-tooltip
-              v-if="orders.length > 0"
-              bottom
-              color="accent"
-              transition="slide-y-transition"
-            >
+            <v-tooltip v-if="orders.length > 0" bottom color="accent" transition="slide-y-transition">
               <template #activator="{ on, attrs }">
-                <v-btn
-                  icon
-                  color="accent"
-                  class="primary--text ml-3"
-                  v-bind="attrs"
-                  v-on="on"
-                  @click="
-                    tableExport('#orderTable table', 'orders', 'reports.xls')
-                  "
-                >
+                <v-btn icon color="accent" class="primary--text ml-3" v-bind="attrs" v-on="on" @click="
+                  tableExport('#orderTable table', 'orders', 'reports.xls')
+                ">
                   <v-icon>mdi-download</v-icon>
                 </v-btn>
               </template>
@@ -363,15 +168,15 @@
 
         <template #[`item.exitCauses`]="{ item }">
           <span>{{
-            item.student.ExitCauses.length > 0
-              ? item.student.ExitCauses[0].exitCausesTitle
-              : 'لا يوجد'
+          item.student.ExitCauses.length > 0
+          ? item.student.ExitCauses[0].exitCausesTitle
+          : 'لا يوجد'
           }}</span>
         </template>
 
         <template #[`item.age`]="{ item }">
           <span>{{
-            new Date().getFullYear() - item.student.dob.split('-')[0]
+          new Date().getFullYear() - item.student.dob.split('-')[0]
           }}</span>
         </template>
 
@@ -381,31 +186,25 @@
 
         <template #[`item.student.studentGraduation`]="{ item }">
           <span>{{
-            item.student.studentGraduation !== null
-              ? item.student.studentGraduation
-              : 'لا يوجد'
+          item.student.studentGraduation !== null
+          ? item.student.studentGraduation
+          : 'لا يوجد'
           }}</span>
         </template>
 
         <template #[`item.personalPhone`]="{ item }">
-          <div
-            v-for="responsables in item.student.studentResponsables"
-            :key="responsables.idStudentResponsible"
-          >
+          <div v-for="responsables in item.student.studentResponsables" :key="responsables.idStudentResponsible">
             <span v-if="responsables.responsibleName === 'رقم شخصي'">{{
-              responsables.responsiblePhone
+            responsables.responsiblePhone
             }}</span>
             <span v-else>لا يوجد</span>
           </div>
         </template>
 
         <template #[`item.parentPhone`]="{ item }">
-          <div
-            v-for="responsables in item.student.studentResponsables"
-            :key="responsables.idStudentResponsible"
-          >
+          <div v-for="responsables in item.student.studentResponsables" :key="responsables.idStudentResponsible">
             <span v-if="responsables.responsibleName === 'رقم الاب'">{{
-              responsables.responsiblePhone
+            responsables.responsiblePhone
             }}</span>
             <span v-else>لا يوجد</span>
           </div>
@@ -1059,8 +858,7 @@ export default {
             position: 'top-center',
           })
         } else {
-          this.$axios
-            .get(`searchOrder?${queryString}`)
+          this.$axios.get(`searchOrder?${queryString}`)
             .then((order) => {
               this.ordersCount = order.data.length
               this.orders = order.data.reverse().map((order) => {
@@ -1102,8 +900,8 @@ export default {
                     level:
                       order.student.studentLevel.length > 0
                         ? this.convertIntToText(
-                            order.student.studentLevel[0].level
-                          ).text
+                          order.student.studentLevel[0].level
+                        ).text
                         : 'لا يوجد',
                     class: order.student.studentLevel.map((std) => {
                       return std.class
